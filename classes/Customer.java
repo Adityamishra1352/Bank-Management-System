@@ -4,6 +4,7 @@ public class Customer{
     String name;
     int phoneNumber;
     String address;
+    Account accountNumber;
 
     public void displayCustomer(){
         System.out.println("Customer Name: "+ name);
@@ -11,12 +12,12 @@ public class Customer{
         System.out.println("Customer Address: "+ address);
         System.out.println("Customer Phone Number: "+ phoneNumber);
     }
-    public int updatePhone(int n){
-        phoneNumber=n;
-        return 1;
-    }
-    public int updateAddress(String n){
-        address=n;
-        return 1;
-    }
+    public void updatePhone(int n){
+    phoneNumber = n;
+    System.out.println("Phone updated successfully.");
+}
+    public void updateAddress(String address){
+    this.address = address;
+    System.out.println("Address updated successfully.");
+}
 }

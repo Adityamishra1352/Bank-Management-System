@@ -8,7 +8,7 @@ public class BankManagementSystem{
         int choice;
         System.out.println("Welcome to the Bank Management System:");
         do{
-        System.out.println("1.Create Account\n2.Search Account\n3.Display Account\n4.Deposit Money\n5.Withdraw Money\n6.Exit");
+        System.out.println("1.Create Account\n2.Search Account\n3.Display Account\n4.Deposit Money\n5.Withdraw Money\n6.Update Phone number\n7.Update address\n8.Exit");
         choice=sc.nextInt();
         switch(choice){
             case 1:
@@ -55,7 +55,20 @@ String accountType = sc.nextLine();
             int e=sc.nextInt();
             bank.withdraw(e,d);
             break;
+            case 6: System.out.println("Enter your accoount number: ");
+            int f=sc.nextInt();
+            System.out.println("Enter your new phone number");
+            int g=sc.nextInt();
+            bank.updatePhone(g);
+            break;
+            case 7: System.out.println("Enter your account number: ");
+            int h=sc.nextInt();
+            sc.nextLine();
+            System.out.println("Enter your new address: ");
+            String i=sc.nextLine();
+            bank.updateAddress(i);
+            break;
         }
-        }while(choice!=6);
+        }while(choice!=8);
     }
 }

@@ -28,4 +28,10 @@ public class Bank{
     public void withdraw(int n, int accountNumber){
         account.withdraw(n,accountNumber);
     }
+    public void updatePhone(int n){
+        obj.updatePhone(n);
+    }
+    public void updateAddress( String address){
+        obj.updateAddress( address);
+    }
 }
