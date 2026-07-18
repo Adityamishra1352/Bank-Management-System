@@ -46,18 +46,18 @@ public class Account{
     public int getTransactionsCounter(){
         return transactionsCounter;
     }
-    public void deposit(int n){
-        if(n>=0){
+    public void deposit(int n) throws InvalidAmountException{
+        if(n>0){
             lastDeposit=n;
             balance=balance+n;
             transactionsCounter++;
             System.out.println("Deposit Successful!");
         }
         else{
-            System.out.println("Negative or Rs.0 cannot be added");
+            throw new InvalidAmountException("Negative or Rs.0 cannot be added");
         }
     }
-    public void withdraw(int n){
+    public void withdraw(int n) throws InsufficientBalanceException{
             System.out.println("n: "+n);
             System.out.println("balance: "+balance);
         if(n<=balance){
@@ -68,7 +68,7 @@ public class Account{
             System.out.println("Withdrawn "+n+" ruppess!!");
         }
         else{
-            System.out.println("Amount to withdraw greater than the balance.");
+            throw new InsufficientBalanceException("Amount to withdraw greater than the balance.");
         }
     }
     public void checkBalance(){

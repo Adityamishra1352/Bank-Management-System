@@ -33,15 +33,19 @@ public class Bank{
     public void totalAccounts(){
         System.out.println("Total Accounts: "+accounts.size());
     }
-    public void searchAccount(int accountNumber){
+    public void searchAccount(int accountNumber) throws InvalidAccountException{
+        boolean searchFound=false;
         for(Account acc:accounts){
         if(acc.getAccountNumber()==accountNumber){
             System.out.println("Account found.");
             acc.getCustomer().displayCustomer();
         }
         }
+        if(searchFound==false){
+            throw new InvalidAccountException("Account Not Found!!");
+        }
     }
-    public void displayAccount(int accountNumber){
+    public void displayAccount(int accountNumber) throws InvalidAccountException{
         for(Account acc:accounts){
             if(acc.getAccountNumber()==accountNumber){
         acc.getCustomer().displayCustomer();
@@ -49,38 +53,64 @@ public class Bank{
         System.out.println("Account Type: "+acc.getAccountType());
         acc.checkBalance();
             }
-        }
-    }
-    public void depositMoney(int n, int accountNumber){
-        for(Account acc:accounts){
-            if(accountNumber==acc.getAccountNumber()){
-            acc.deposit(n);
+            else{
+                throw new InvalidAccountException("Account Not Found!!");
             }
         }
     }
-    public void withdraw(int n, int accountNumber){
+    public void depositMoney(int n, int accountNumber) throws InvalidAccountException{
+        for(Account acc:accounts){
+            if(accountNumber==acc.getAccountNumber()){
+                try{
+                    acc.deposit(n);
+                }
+                catch(InvalidAmountException e){
+                    System.out.println(e.getMessage());
+                }
+            
+            }
+            else{
+                throw new InvalidAccountException("Account Not Found!!");
+            }
+        }
+    }
+    public void withdraw(int n, int accountNumber) throws InvalidAccountException{
         for(Account acc:accounts){
         if(accountNumber==acc.getAccountNumber()){
-        acc.withdraw(n);
+        try{
+            acc.withdraw(n);
+        }
+        catch(InsufficientBalanceException e){
+            System.out.println(e.getMessage());
+        }
+        }
+        else{
+            throw new InvalidAccountException("Account not found!!");
         }
         }
     }
-    public void updatePhone(int n, int accountNumber){
+    public void updatePhone(int n, int accountNumber) throws InvalidAccountException{
         for(Account acc: accounts){
             if(accountNumber==acc.getAccountNumber()){
                 acc.getCustomer().updatePhone(n);
             }
+            else{
+                throw new InvalidAccountException("Account not found!!");
+            }
         }
         
     }
-    public void updateAddress( String address,int accountNumber){
+    public void updateAddress( String address,int accountNumber) throws InvalidAccountException{
         for(Account acc:accounts){
             if(accountNumber==acc.getAccountNumber()){
                 acc.getCustomer().updateAddress(address);
             }
+            else{
+                throw new InvalidAccountException("Account not found!!");
+            }
         }
     }
-    public void deleteAccount(int accountNumber){
+    public void deleteAccount(int accountNumber) throws InvalidAccountException{
         boolean found=false;
         for(int z=0;z<accounts.size();z++){
             if(accountNumber==accounts.get(z).getAccountNumber()){
@@ -93,7 +123,7 @@ public class Bank{
             System.out.println("Account deleted successfuly!!");
         }
         else{
-                System.out.println("Account not found!!");
+                throw new InvalidAccountException("Account not found!!");
             }
     }
     public void displayAllAccounts(){
@@ -104,7 +134,7 @@ public class Bank{
             System.out.println("Balance: "+acc.getBalance());
         }
     }
-    public void transferMoney(int sender, int receiver, int amount){
+    public void transferMoney(int sender, int receiver, int amount) throws InvalidAccountException{
         boolean senderExists=false;
         boolean receiverExists=false;
         for(Account acc:accounts){
@@ -117,42 +147,68 @@ public class Bank{
                 receiverExists=true;
             }
             else{
-                System.out.println("Sender or Receiver account not found");
+                throw new InvalidAccountException("Sender or Receiver account not found");
             }
         }
         if(senderExists==true && receiverExists==true){
         for(Account acc: accounts){
             if(acc.getAccountNumber()==sender){
-                acc.withdraw(amount);
+                try{
+                    acc.withdraw(amount);
+                }
+                catch(InsufficientBalanceException e){
+                    System.out.println(e.getMessage());
+                }
             }
             else if(acc.getAccountNumber()==receiver){
-                acc.deposit(amount);
+                try{
+                    acc.deposit(amount);
+                }
+                catch(InvalidAmountException e){
+                    System.out.println(e.getMessage());
+                }
+                
             }
         }
         }
     }
-    public void transactionsCounter(int accountNumber){
+    public void transactionsCounter(int accountNumber) throws InvalidAccountException{
+        boolean tranFound=false;
         for(Account acc: accounts){
             if(acc.getAccountNumber()==accountNumber){
+                tranFound=true;
                 System.out.println("Number of transactions: "+acc.getTransactionsCounter());
             }
         }
+        if(tranFound==false){
+            throw new InvalidAccountException("Account Not found");
+        }
     }
-    public void miniStatement(int accountNumber){
+    public void miniStatement(int accountNumber) throws InvalidAccountException{
+        boolean miniFound=false;
         for(Account acc: accounts){
             if(acc.getAccountNumber()==accountNumber){
+                miniFound=true;
                 System.out.println("Current Balance: "+acc.getBalance());
                 System.out.println("Last Deposit: "+acc.getLastDeposit());
                 System.out.println("Last Withdraw: "+acc.getLastWithdraw());
             }
         }
+        if(miniFound==false){
+            throw new InvalidAccountException("Account not found");
+        }
     }
-    public void searchAccountByName(String name){
+    public void searchAccountByName(String name) throws InvalidAccountException{
+        boolean nameFound=false;
         for(Account acc: accounts){
             if(acc.getCustomer().getName().equalsIgnoreCase(name)){
                 System.out.println("Account found.");
+                nameFound=true;
                 acc.getCustomer().displayCustomer();
             }
+        }
+        if(nameFound==false){
+            throw new InvalidAccountException("Account not found");
         }
     }
     public void bankStats(){
