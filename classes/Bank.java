@@ -104,4 +104,47 @@ public class Bank{
             }
         }
     }
+    public void transactionsCounter(int accountNumber){
+        for(Account acc: accounts){
+            if(acc.accountNumber==accountNumber){
+                System.out.println("Number of transactions: "+acc.transactionsCounter);
+            }
+        }
+    }
+    public void miniStatement(int accountNumber){
+        for(Account acc: accounts){
+            if(acc.accountNumber==accountNumber){
+                System.out.println("Current Balance: "+acc.balance);
+                System.out.println("Last Deposit: "+acc.lastDeposit);
+                System.out.println("Last Withdraw: "+acc.lastWithdraw);
+            }
+        }
+    }
+    public void searchAccountByName(String name){
+        for(Account acc: accounts){
+            if(acc.customer.name.equalsIgnoreCase(name)){
+                System.out.println("Account found.");
+                acc.customer.displayCustomer();
+            }
+        }
+    }
+    public void bankStats(){
+        double totalMoney=0.0;
+        double highestBalance=0.0;
+        double lowestBalance=0.0;
+        for(Account acc:accounts){
+            totalMoney=totalMoney+acc.balance;
+            if(highestBalance<acc.balance){
+                highestBalance=acc.balance;
+            }
+            if(lowestBalance>acc.balance){
+                lowestBalance=acc.balance;
+            }
+        }
+        System.out.println("Total Accounts: "+accounts.size());
+        System.out.println("Total Money in Bank: "+totalMoney);
+        System.out.println("Average Balance: "+totalMoney/accounts.size());
+        System.out.println("Highest Balance: "+highestBalance);
+        System.out.println("Lowest Balance: "+lowestBalance);
+    }
 }

@@ -9,7 +9,8 @@ public class BankManagementSystem{
         System.out.println("Welcome to the Bank Management System:");
         do{
         System.out.println("1.Create Account\n2.Search Account\n3.Display Account\n4.Deposit Money\n5.Withdraw Money\n6.Update Phone number\n7.Update address\n8.Total Number of Accounts\n9.Delete Account");
-        System.out.println("10.Display all Accounts\n11.Transfer Money\n12.Exit");
+        System.out.println("10.Display all Accounts\n11.Transfer Money\n12.Number of Transactions\n13.Mini Statement");
+        System.out.println("14.Search Account by Name\n15.Bank Statistics\n16.Exit");
         choice=sc.nextInt();
         switch(choice){
             case 1:
@@ -87,7 +88,26 @@ String accountType = sc.nextLine();
             int m=sc.nextInt();
             bank.transferMoney(k,l,m);
             break;
+            case 12: 
+            System.out.println("Enter your account number: ");
+            int o=sc.nextInt();
+            bank.transactionsCounter(o);
+            break;
+            case 13:
+                System.out.println("Enter your account number: ");
+                int p=sc.nextInt();
+                bank.miniStatement(p);
+                break;
+            case 14: 
+            System.out.println("Enter your name: ");
+            sc.nextLine();
+            String q=sc.nextLine();
+            bank.searchAccountByName(q);
+            break;
+            case 15: 
+            bank.bankStats();
+            break;
         }
-        }while(choice!=12);
+        }while(choice!=16);
     }
 }
