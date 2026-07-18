@@ -1,10 +1,40 @@
 package classes;
 public class Customer{
-    int customerId;
-    String name;
-    int phoneNumber;
-    String address;
-    Account accountNumber;
+    private int customerId;
+    private String name;
+    private int phoneNumber;
+    private String address;
+    // Account accountNumber;
+    public Customer(String name, int phoneNumber, String address, int customerId){
+        this.name=name;
+        this.phoneNumber=phoneNumber;
+        this.address=address;
+        this.customerId=customerId;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setPhoneNumber(int phoneNumber){
+        this.phoneNumber=phoneNumber;
+    }
+    public int getPhoneNumber(){
+        return phoneNumber;
+    }
+    public void setAddress(String address){
+        this.address=address;
+    }
+    public String getAddress(){
+        return address;
+    }
+    public void setCustomerId(int customerId){
+        this.customerId=customerId;
+    }
+    public int getCustomerId(){
+        return customerId;
+    }
 
     public void displayCustomer(){
         System.out.println("Customer Name: "+ name);
