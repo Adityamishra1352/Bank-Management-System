@@ -1,7 +1,11 @@
 package classes;
 import java.util.ArrayList;
 public class Bank{
-    private ArrayList<Account> accounts=new ArrayList<>();
+    public Bank() {
+    accounts = fileManager.loadAccounts();
+}
+    private ArrayList<Account> accounts;
+private FileManager fileManager = new FileManager();
     public void createAccount(int customerId, String name ,int phone, String address, int accountNumber, String accountType){
         Account account=new Account();
         Customer customer=new Customer(name,phone,address,customerId);
@@ -27,7 +31,10 @@ public class Bank{
                 return;
             }
         }
+        // accounts.add(account);
         accounts.add(account);
+        fileManager.saveAccounts(accounts);
+        System.out.println("Account created successfully.");
         
     }
     public void totalAccounts(){
@@ -63,6 +70,7 @@ public class Bank{
             if(accountNumber==acc.getAccountNumber()){
                 try{
                     acc.deposit(n);
+                    fileManager.saveAccounts(accounts);
                 }
                 catch(InvalidAmountException e){
                     System.out.println(e.getMessage());
@@ -79,6 +87,7 @@ public class Bank{
         if(accountNumber==acc.getAccountNumber()){
         try{
             acc.withdraw(n);
+            fileManager.saveAccounts(accounts);
         }
         catch(InsufficientBalanceException e){
             System.out.println(e.getMessage());
@@ -93,6 +102,7 @@ public class Bank{
         for(Account acc: accounts){
             if(accountNumber==acc.getAccountNumber()){
                 acc.getCustomer().updatePhone(n);
+                fileManager.saveAccounts(accounts);
             }
             else{
                 throw new InvalidAccountException("Account not found!!");
@@ -104,6 +114,7 @@ public class Bank{
         for(Account acc:accounts){
             if(accountNumber==acc.getAccountNumber()){
                 acc.getCustomer().updateAddress(address);
+                fileManager.saveAccounts(accounts);
             }
             else{
                 throw new InvalidAccountException("Account not found!!");
@@ -115,6 +126,7 @@ public class Bank{
         for(int z=0;z<accounts.size();z++){
             if(accountNumber==accounts.get(z).getAccountNumber()){
                 accounts.remove(z);
+                fileManager.saveAccounts(accounts);
                 found=true;
                 // System.out.println("Account deleted successfuly!!");
             }
@@ -155,6 +167,7 @@ public class Bank{
             if(acc.getAccountNumber()==sender){
                 try{
                     acc.withdraw(amount);
+                    fileManager.saveAccounts(accounts);
                 }
                 catch(InsufficientBalanceException e){
                     System.out.println(e.getMessage());
@@ -163,6 +176,7 @@ public class Bank{
             else if(acc.getAccountNumber()==receiver){
                 try{
                     acc.deposit(amount);
+                    fileManager.saveAccounts(accounts);
                 }
                 catch(InvalidAmountException e){
                     System.out.println(e.getMessage());
