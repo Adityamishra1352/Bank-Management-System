@@ -31,14 +31,19 @@ sc.nextLine();          // <-- consume the Enter
 
 System.out.println("accountType: ");
 String accountType = sc.nextLine();
-            bank.createAccount(customerId, name , phone, address,  accountNumber,  accountType);
+            try{
+                bank.createAccount(customerId, name , phone, address,  accountNumber,  accountType);
+            }
+            catch(InvalidAccountException e){
+                System.out.println(e.getMessage());
+            }
             //System.out.println("Account Created Successfully");
             break;
             case 8:
                 bank.totalAccounts();
                 break;
             case 2: 
-            System.out.println("Enter Account Number: ");
+            System.out.println("Enter Customer Id: ");
             int n=sc.nextInt();
             try{
                 bank.searchAccount(n);
@@ -80,7 +85,7 @@ String accountType = sc.nextLine();
             try{
                 bank.withdraw(x,d);
             }
-            catch(InvalidAccountException e){
+            catch(Exception e){
                 System.out.println(e.getMessage());
             }
             
@@ -109,71 +114,71 @@ String accountType = sc.nextLine();
                 System.out.println(e.getMessage());
             }
             
-            break;
-            case 9: System.out.println("Enter your account number:");
-            int j=sc.nextInt();
-            try{
-                bank.deleteAccount(j);
-            }
-            catch(InvalidAccountException e){
-                System.out.println(e.getMessage());
-            }
+            // break;
+            // case 9: System.out.println("Enter your account number:");
+            // int j=sc.nextInt();
+            // try{
+            //     bank.deleteAccount(j);
+            // }
+            // catch(InvalidAccountException e){
+            //     System.out.println(e.getMessage());
+            // }
             
-            case 10: 
-            bank.displayAllAccounts();
-            break;
-            case 11: 
-            System.out.println("Enter the sender account number: ");
-            int k=sc.nextInt();
-            System.out.println("Enter the receiver's account number: ");
-            int l=sc.nextInt();
-            System.out.println("Enter the amount to transfer: ");
-            int m=sc.nextInt();
-            try{
-                bank.transferMoney(k,l,m);
-            }
-            catch(InvalidAccountException e){
-                System.out.println(e.getMessage());
-            }
+            // case 10: 
+            // bank.displayAllAccounts();
+            // break;
+            // case 11: 
+            // System.out.println("Enter the sender account number: ");
+            // int k=sc.nextInt();
+            // System.out.println("Enter the receiver's account number: ");
+            // int l=sc.nextInt();
+            // System.out.println("Enter the amount to transfer: ");
+            // int m=sc.nextInt();
+            // try{
+            //     bank.transferMoney(k,l,m);
+            // }
+            // catch(InvalidAccountException e){
+            //     System.out.println(e.getMessage());
+            // }
             
-            break;
-            case 12: 
-            System.out.println("Enter your account number: ");
-            int o=sc.nextInt();
-            try{
-                bank.transactionsCounter(o);
-            }
-            catch(InvalidAccountException e){
-                System.out.println(e.getMessage());
-            }
+            // break;
+            // case 12: 
+            // System.out.println("Enter your account number: ");
+            // int o=sc.nextInt();
+            // try{
+            //     bank.transactionsCounter(o);
+            // }
+            // catch(InvalidAccountException e){
+            //     System.out.println(e.getMessage());
+            // }
             
-            break;
-            case 13:
-                System.out.println("Enter your account number: ");
-                int p=sc.nextInt();
-                try{
-                bank.miniStatement(p);
-            }
-            catch(InvalidAccountException e){
-                System.out.println(e.getMessage());
-            }
+            // break;
+            // case 13:
+            //     System.out.println("Enter your account number: ");
+            //     int p=sc.nextInt();
+            //     try{
+            //     bank.miniStatement(p);
+            // }
+            // catch(InvalidAccountException e){
+            //     System.out.println(e.getMessage());
+            // }
                 
-                break;
-            case 14: 
-            System.out.println("Enter your name: ");
-            sc.nextLine();
-            String q=sc.nextLine();
-            try{
-                bank.searchAccountByName(q);
-            }
-            catch(InvalidAccountException e){
-                System.out.println(e.getMessage());
-            }
+            //     break;
+            // case 14: 
+            // System.out.println("Enter your name: ");
+            // sc.nextLine();
+            // String q=sc.nextLine();
+            // try{
+            //     bank.searchAccountByName(q);
+            // }
+            // catch(InvalidAccountException e){
+            //     System.out.println(e.getMessage());
+            // }
             
-            break;
-            case 15: 
-            bank.bankStats();
-            break;
+            // break;
+            // case 15: 
+            // bank.bankStats();
+            // break;
         }
         }while(choice!=16);
     }
