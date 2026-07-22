@@ -1,4 +1,5 @@
-package classes;
+package classes.model;
+import classes.exception.*;
 import java.io.Serializable;
 public class Account implements Serializable{
     private int accountNumber;
