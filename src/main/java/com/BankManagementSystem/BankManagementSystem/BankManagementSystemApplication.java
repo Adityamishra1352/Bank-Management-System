@@ -43,11 +43,7 @@ public class BankManagementSystemApplication {
 					String accountType = sc.nextLine();
 					bank.createAccount(customerId, name , phone, address,  accountNumber,  accountType);
 
-					//System.out.println("Account Created Successfully");
 					break;
-//                case 8:
-//                    bank.totalAccounts();
-//                    break;
 				case 2:
 					System.out.println("Enter Customer Id: ");
 					int n=sc.nextInt();
@@ -76,10 +72,7 @@ public class BankManagementSystemApplication {
 					int f=sc.nextInt();
 					System.out.println("Enter your new phone number");
 					int g=sc.nextInt();
-
 					bank.updatePhone(g,f);
-
-
 					break;
 				case 7: System.out.println("Enter your account number: ");
 					int h=sc.nextInt();
@@ -92,45 +85,41 @@ public class BankManagementSystemApplication {
 
 
 					break;
-//                case 9: System.out.println("Enter your account number:");
-//                    int j=sc.nextInt();
-//                    bank.deleteAccount(j);
-//
-//
-//                    break;
-//                case 10:
-//                    bank.displayAllAccounts();
-//                    break;
-//                case 11:
-//                    System.out.println("Enter the sender account number: ");
-//                    int k=sc.nextInt();
-//                    System.out.println("Enter the receiver's account number: ");
-//                    int l=sc.nextInt();
-//                    System.out.println("Enter the amount to transfer: ");
-//                    int m=sc.nextInt();
-//
-//                    bank.transferMoney(k,l,m);
-//
-//
-//                    break;
-//                case 12:
-//                    System.out.println("Enter your account number: ");
-//                    int o=sc.nextInt();
-//
-//                    bank.transactionsCounter(o);
-//
-//
-//
-//                    break;
-//                case 13:
-//                    System.out.println("Enter your account number: ");
-//                    int p=sc.nextInt();
-//
-//                    bank.miniStatement(p);
-//
-//
-//
-//                    break;
+                case 9: System.out.println("Enter your account number:");
+                    int j=sc.nextInt();
+                    bank.deleteAccount(j);
+
+
+                    break;
+                case 10:
+                    bank.displayAllAccounts();
+                    break;
+                case 11:
+                    System.out.println("Enter the sender account number: ");
+                    int k=sc.nextInt();
+                    System.out.println("Enter the receiver's account number: ");
+                    int l=sc.nextInt();
+                    System.out.println("Enter the amount to transfer: ");
+                    int m=sc.nextInt();
+
+                    bank.transferMoney(k,l,m);
+
+
+                    break;
+                case 12:
+                    System.out.println("Enter your account number: ");
+                    int o=sc.nextInt();
+
+                    bank.transactionsCounter(o);
+
+
+
+                    break;
+                case 13:
+                    System.out.println("Enter your account number: ");
+                    int p=sc.nextInt();
+                    bank.miniStatement(p);
+                    break;
 //                case 14:
 //                    System.out.println("Enter your name: ");
 //                    sc.nextLine();
